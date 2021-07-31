@@ -315,7 +315,7 @@ TEXT;
     //测试司机评价
     public function testorderEvaluation(){
         //TODO:输入结果与返回结果做校验
-        $item=$this->go->orderEvaluation([
+        $item=$this->go->saveOrderScore([
             'evaluationScore'=>'5',
             'orderId'=>'6979778461422322852',
             'remark'=>'测试'

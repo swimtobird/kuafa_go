@@ -674,7 +674,7 @@ class Go extends AbstractGateway implements GoGatewayInterface
      * @return mixed
      * 请求方式  POST application/x-www-form-urlencoded
      */
-    public function orderEvaluation(array $params)
+    public function saveOrderScore(array $params)
     {
 
         //非必要字段
