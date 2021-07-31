@@ -29,7 +29,7 @@ TEXT;
             'enterpriseId' => $enterpriseId,
         ];
 
-        $this->go = new GoProvider('Ruqi_Go', $config, $privateKey);
+        $this->go = new GoProvider('Ruqi_Go', $config);
     }
 
 //    public function testRsa()
