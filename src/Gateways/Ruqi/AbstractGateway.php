@@ -28,7 +28,7 @@ abstract class AbstractGateway implements GatewayInterface
      */
     protected $client;
 
-    const HOST = 'www.baidu.com';
+    const HOST = 'https://callbacktest.ruqimobility.com';
 
     /**
      * AbstractGateway constructor.
@@ -50,7 +50,8 @@ abstract class AbstractGateway implements GatewayInterface
     {
         $method = $urls['method'];
         $url = $urls['url'];
-
+        ksort($data);
+        $data['sign'] = $this->getSign($data);
         /**
          * @var ResponseInterface $response
          */
@@ -88,5 +89,49 @@ abstract class AbstractGateway implements GatewayInterface
             case 'post':
                 return 'form_params';
         }
+    }
+
+
+    /**
+     * 生成sign
+     * @param array $data 参数
+     * @return string 返回sign
+     *
+     */
+    protected function getSign(array $data): string
+    {
+
+        ksort($data);//按升序排序
+        $result = '';
+
+        foreach ($data as $key => $value) {
+            if ($value){
+                if (!is_array($value)) {
+                    if (is_bool($value)){
+                        $value = $value?'true':'false';
+                    }
+                    $result .= $key ."=". $value."&";
+                }
+                if (is_array($value) && array_values($value) === $value){
+                    $result .= $key ."=". json_encode($value)."&";
+                }
+            }
+        }
+        //去除掉最后一个&号
+        $result=substr($result, 0, -1);
+
+
+        $privateKey = "-----BEGIN RSA PRIVATE KEY-----\n" .
+            wordwrap($this->config['privateKey'], 64, "\n", true) .
+            "\n-----END RSA PRIVATE KEY-----";
+
+        $key = openssl_get_privatekey($privateKey);
+
+        openssl_sign($result, $signature, $key,OPENSSL_ALGO_SHA1);
+
+        openssl_free_key($key);
+
+        //进行base64编码
+        return base64_encode($signature);
     }
 }
