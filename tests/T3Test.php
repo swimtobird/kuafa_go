@@ -28,7 +28,10 @@ class T3Test extends TestCase
     }
 
     public function test(){
+        $item=$this->go->getOpenCity([]);
 
+
+        var_dump($item);
     }
 
 }

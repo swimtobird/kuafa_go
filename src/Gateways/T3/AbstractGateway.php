@@ -55,13 +55,13 @@ abstract class AbstractGateway implements GatewayInterface
         $result = json_decode($response->getBody(),true);
 
         if ($response->getStatusCode()>=500){
-            throw new GatewayRequestException('Ruqi GatewayError:Server is 500');
+            throw new GatewayRequestException('T3 GatewayError:Server is 500');
         }
 
         if (isset($result['state']) && 'FAILURE' === $result['state']){
             throw new GatewayRequestException(
                 sprintf(
-                    'Ruqi Gateway Error: %s, %s',
+                    'T3 Gateway Error: %s, %s',
                     $result['error']['code'] ?? '',
                     $result['error']['message'] ?? ''
                 )
@@ -110,21 +110,9 @@ abstract class AbstractGateway implements GatewayInterface
                 }
             }
         }
-        //去除掉最后一个&号
-        $result=substr($result, 0, -1);
+        //字符串加上token
+        $total_result=$result."token=".$this->config['token'];
 
-
-        $privateKey = "-----BEGIN RSA PRIVATE KEY-----\n" .
-            wordwrap($this->config['privateKey'], 64, "\n", true) .
-            "\n-----END RSA PRIVATE KEY-----";
-
-        $key = openssl_get_privatekey($privateKey);
-
-        openssl_sign($result, $signature, $key,OPENSSL_ALGO_SHA1);
-
-        openssl_free_key($key);
-
-        //进行base64编码
-        return base64_encode($signature);
+        return md5($total_result);
     }
 }
