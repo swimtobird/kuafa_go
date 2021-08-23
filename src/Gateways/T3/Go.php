@@ -53,7 +53,6 @@ class Go extends AbstractGateway implements GoGatewayInterface
             'typeTime' => (int)$params['typeTime'],//订单类型（时效性）：1 实时订单， 2 预约订单
             'typeModule' => (int)$params['typeModule'],//产品类型
             'vehicleType' => (int)$params['vehicleType'],//车辆等级
-            'estimateFlag' => (string)$params['estimateFlag'],//预估价格标识
             'passengerPhone' => (string)$params['passengerPhone'],//乘客手机号
             'tripartitePassengerId' => (string)$params['tripartitePassengerId'],//第三方用户唯一ID
         ];
@@ -123,7 +122,6 @@ class Go extends AbstractGateway implements GoGatewayInterface
             'typeModule' => (int)$params['typeModule'], //产品类型
             'vehicleTypes' => (string)$params['vehicleTypes'], //车辆等级，多个车辆等级以半角逗号分隔
         ];
-
 
         //合并
         foreach ($item as $key => $value) {
@@ -378,13 +376,11 @@ class Go extends AbstractGateway implements GoGatewayInterface
 
     /**
      * 开通城市
-     * @param array $params
      * @return mixed
      * 请求方法: POST Content-Type: application/x-www-form-urlencoded
      */
-    public function getOpenCity(array $params)
+    public function getOpenCity()
     {
-
         //去除config中的token
         $config=json_decode($this->config, true);
         unset($config['token']);
@@ -392,7 +388,7 @@ class Go extends AbstractGateway implements GoGatewayInterface
         //合并公共配置
         $total_params = $config;
         return $this->request([
-            'url' => '/openapi/t3/v1/city/openCitysss',
+            'url' => '/openapi/t3/v1/city/openCity',
             'method' => 'post'
         ], $total_params);
     }

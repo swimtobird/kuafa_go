@@ -112,7 +112,6 @@ abstract class AbstractGateway implements GatewayInterface
         }
         //字符串加上token
         $total_result=$result."token=".$this->config['token'];
-
         return md5($total_result);
     }
 }
