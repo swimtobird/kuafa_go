@@ -19,9 +19,9 @@ class T3Test extends TestCase
     public function __construct(){
         //公共参数
         $config = [
-            'channel' => 'mp',
+            'channel' => '',
             'timestamp' => time(),
-            'token' => '8299e163c1c2463ebe9523652f869055'
+            'token' => ''
         ];
 
         $this->go = new GoProvider('T3_Go', $config);

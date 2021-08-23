@@ -17,13 +17,11 @@ class KuaFuGoTest extends TestCase
 {
 
     public function __construct(){
-        $privateKey = <<<TEXT
-MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKj4f8h8RmABD1PxL8HaFtWEEJJi/QKe/2EaNDGXjEH3KI7PEMNQTY9sVx69D4Nlky21bOdIgevnQV2vM/56WGOWsyTFaUwvb8gLr6XHcHp1Edf5adbNY0pwtcA+119jbjrVdSeZiAzFJHZMj53H8gq/TFiLaVKssm1slqFa3gGRAgMBAAECgYEApehhp5wGiatgvn458zBNbVaf4uxZGyK9BD3zc6Im8HpbE2XTQsNtdF7fZ+og+lZY3e+ev7VdBCFr+C3Ycoz0jTGSdUnk6kCoNWFL3ADrNi0zIg7i7zpzumWrkqw0QCjE77ln9zyJtCuxm0NPugVGuk9KTgg7PIWPv/9kadVtkDECQQDnsAVch8r1pY4JLVFcEfZp4jRcIKqdq1RPNHXX0S/tkTRz25ZUgJu7s4FRSwJZJVLiplANE7ZWLf0QPok569DtAkEAurOsKSbOaRojgKTxnXaSfcOYYzXmtzdEkMlM8w6N5r1Nzm+EqAqX8XDlv7iDhvP2PNl5sa1nqXnSk5nlAAkytQJBAIZDmGfN/c0rOsuQqpR7iFxGDWfSOm2SqxIXaa8+99JpkocNmumvehBlbyyIFn1Ixua30K4zXThGAGBYjTe2s+UCQGOhkATh1ZKWxU1YOCucY+5DG6YN1JH/J1LQaYTnRmhUqxm3vyXhiVXptmEKOP4iYEv2jg94BvKUtP/ZRzAuuGUCQDW5bXKnGn8lh/Yk6EEFWj32BW+hauMVq4XJqZ7jkpmdgAiJBFV0zK/mIgDmLH2UkVXKo4zIzA5YTmEqMxVNPfQ=
-TEXT;
-        $enterpriseId = 6886288234393894912;
+        $privateKey = '';
+        $enterpriseId = '';
         $config = [
-            'loginPhone' => '16666666621',
-            'channel' => 'MPTRIP',
+            'loginPhone' => '',
+            'channel' => '',
             'timestamp' => time(),
             'privateKey' => $privateKey,
             'enterpriseId' => $enterpriseId,
