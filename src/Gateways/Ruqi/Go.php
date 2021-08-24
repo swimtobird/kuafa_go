@@ -187,18 +187,18 @@ class Go extends AbstractGateway implements GoGatewayInterface
         $personalParams = [
             'orderId' => (string)$params['orderId'] //订单ID
         ];
-        if (!empty($this->config['channel'])) {
-            $personalParams['channel'] = $this->config['channel']; //供应商分配给 打车平台的渠道编号，同时需要
-        }
 
-        if (!empty($this->config['timestamp'])) {
-            $personalParams['timestamp'] = $this->config['timestamp'];//请求发送时的时间戳
-        }
+        //去除config中的enterpriseId和私钥
+        $config=json_decode($this->config, true);
+        unset($config['privateKey']);
+        unset($config['enterpriseId']);
 
+        //合并公共配置
+        $total_params = array_merge($config,$personalParams);
         return $this->request([
             'url' => '/etravel/tob/order/queryOrderInfo',
             'method' => 'post'
-        ], $personalParams);
+        ], $total_params);
     }
 
 
@@ -290,8 +290,8 @@ class Go extends AbstractGateway implements GoGatewayInterface
     {
         //必要字段
         $personalParams = [
-            'orderId' => (string)$params['orderId'], //第几页
-            'oid' => (string)$params['type'] //查询类型(1全部 2待支付 3待评价 4未完成 5待开票)
+            'orderId' => (string)$params['orderId'], //服务商(如祺出行)订单ID
+            'oid' => (string)$params['oid'] //打车平台用户订单ID
         ];
 
         //去除config中的enterpriseId和私钥
@@ -674,7 +674,7 @@ class Go extends AbstractGateway implements GoGatewayInterface
      * @return mixed
      * 请求方式  POST application/x-www-form-urlencoded
      */
-    public function orderEvaluation(array $params)
+    public function saveOrderScore(array $params)
     {
 
         //非必要字段
