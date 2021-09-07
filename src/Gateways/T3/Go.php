@@ -546,4 +546,33 @@ class Go extends AbstractGateway implements GoGatewayInterface
             'method' => 'post'
         ], $total_params);
     }
+
+    /**
+     * 乘客投诉
+     * @param array $params
+     * @return mixed
+     * 请求方法  POST Content-Type: application/x-www-form-urlencoded
+     */
+    public function saveOrderComplaint(array $params)
+    {
+        //必要字段
+        $personalParams = [
+            'platformOrderNo' => (string)$params['platformOrderNo'], //平台订单号(T3)
+            'tripartiteOrderId' => (string)$params['tripartiteOrderId'], //第三方订单ID
+            'complaintReason' => (string)$params['complaintReason'], //投诉原因
+            'description' => (string)$params['description'], //用户描述
+            'complaintType' => (string)$params['description'] //投诉类型
+        ];
+
+        //去除config中的token
+        $config=json_decode($this->config, true);
+        unset($config['token']);
+
+        //合并公共配置
+        $total_params = array_merge($config, $personalParams);
+        return $this->request([
+            'url' => '/openapi/t3/v1/complaint/orderComplaint',
+            'method' => 'post'
+        ], $total_params);
+    }
 }
