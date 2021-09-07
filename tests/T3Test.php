@@ -27,6 +27,22 @@ class T3Test extends TestCase
         $this->go = new GoProvider('T3_Go', $config);
     }
 
+    //测试获取订单详情
+    public function testSaveOrderComplaint(){
+        //TODO:输入结果与返回结果做校验
+        $item=$this->go->saveOrderComplaint([
+            'platformOrderNo' => 'KC120210828182400001',
+            'tripartiteOrderId' => 'PT2021082851555250',
+            'complaintReason' => 1,
+            'description' => '无',
+            'complaintType' => 0
+        ]);
+        //TODO:验证异常参数情况
+        if ($item['code']!==10000) {
+            throw new InvalidArgumentException("[".$item['code']."]".$item['message']);
+        }
+    }
+
     public function testGetPriceDesc(){
         $item=$this->go->getPriceDesc([]);
         if ($item['code']!==10000) {
