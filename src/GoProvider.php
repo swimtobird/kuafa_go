@@ -27,6 +27,7 @@ use Swimtobird\KuaFuGo\Utils\Config;
  * @method  GoGatewayInterface getDriverLocation(array $params)
  * @method  GoGatewayInterface saveOrderScore(array $params)
  * @method  GoGatewayInterface driverGrabCallBack(array $params)
+ * @method  GoGatewayInterface getPayStatus(array $params)
  */
 class GoProvider
 {
