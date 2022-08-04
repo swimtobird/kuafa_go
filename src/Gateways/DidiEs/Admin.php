@@ -13,6 +13,8 @@ use Swimtobird\KuaFuGo\Contracts\AdminGatewayInterface;
 
 class Admin extends AbstractGateway implements AdminGatewayInterface
 {
+    protected $access_token;
+
     private function getBaseParams()
     {
         return [
@@ -25,17 +27,30 @@ class Admin extends AbstractGateway implements AdminGatewayInterface
 
     public function getAccessToken()
     {
+        if (isset($this->access_token)){
+            return $this->access_token;
+        }
         $data = [
             'client_id'     => $this->config->get('client_id'),
             'client_secret' => $this->config->get('client_secret'),
+            'timestamp'    => time(),
             'grant_type'    => 'client_credentials',
             'phone'         => $this->config->get('admin_phone'),
         ];
 
-        return $this->request([
+        $data =  $this->request([
             'url'    => '/river/Auth/authorize',
             'method' => 'post'
         ], $data);
+
+        $this->setAccessToken(collect($data)->get('access_token'));
+
+        return $this->access_token;
+    }
+
+    public function setAccessToken(string $access_token)
+    {
+        $this->access_token = $access_token;
     }
 
     public function LoginEs(array $params)
