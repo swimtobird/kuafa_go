@@ -7,6 +7,7 @@
 | 名称 | 网关名称 |
 | :--- | :---- |
 | Ruqi_GO | 如祺 |
+| T3_GO | T3 |
 
 ## 网约车网关目前支持以下方法
 - createOrder(array $params)  
@@ -30,4 +31,18 @@
 - saveOrderScore(array $params)  
 说明：司机评分接口
 
+## 目前支持网约车后台网关
+| 名称 | 网关名称 |
+| :--- | :---- |
+| DidiEs_Admin | 滴滴企业版 |
+
+## 网约车网关目前支持以下方法
+- getAccessToken()  
+说明：获取凭证  
+
+- LoginEs(array $params)  
+说明：登录后台  
+
+- LoginClient(array $params)  
+说明：登录客户端  
 
