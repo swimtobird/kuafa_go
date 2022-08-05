@@ -75,4 +75,144 @@ class Admin extends AbstractGateway implements AdminGatewayInterface
             'method' => 'get'
         ], $data);
     }
+
+    public function addBudgetCenter(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/BudgetCenter/add',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function getBudgetCenter(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/BudgetCenter/get',
+            'method' => 'get'
+        ], $data);
+    }
+
+    public function editBudgetCenter(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/BudgetCenter/edit',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function delBudgetCenter(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/BudgetCenter/edit',
+            'method' => 'del'
+        ], $data);
+    }
+
+    public function addLegalEntity(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/LegalEntity/add',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function editLegalEntity(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/LegalEntity/edit',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function getLegalEntity(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/LegalEntity/get',
+            'method' => 'get'
+        ], $data);
+    }
+
+    public function delLegalEntity(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/LegalEntity/del',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function addMember(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Member/single',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function editMember(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Member/edit',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function getMember(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Member/detail',
+            'method' => 'get'
+        ], $data);
+    }
+
+    public function delMember(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Member/del',
+            'method' => 'post'
+        ], $data);
+    }
+
+    public function listMember(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Member/get',
+            'method' => 'get'
+        ], $data);
+    }
+
+    public function getRole(array $params)
+    {
+        $data = array_merge($this->getBaseParams(), $params);
+
+        return $this->request([
+            'url'    => '/river/Role/get',
+            'method' => 'get'
+        ], $data);
+    }
 }
