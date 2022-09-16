@@ -22,7 +22,7 @@ abstract class AbstractGateway implements GatewayInterface
      */
     protected $client;
 
-    const HOST = 'http://api.es.xiaojukeji.com';
+    const HOST = 'https://api.es.xiaojukeji.com';
 
     public function __construct(Config $config)
     {
